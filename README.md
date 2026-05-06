@@ -32,7 +32,8 @@ The repository is organized by team member contributions. Each member has a dedi
 Each TeamMemberX folder contains:
 
 A README describing the workflow and analysis performed.
-Optionally:
+
+In addition, there are optionally:
 * Scripts (e.g., .py)
 * Data files (e.g., .xlsx)
 * Any additional files required for the analysis
