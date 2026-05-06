@@ -18,20 +18,26 @@ The project aims to assess:
 
 ## Project Structure
 
-The repository is organized to reflect both the overall workflow and individual contributions.
+The repository is organized by team member contributions. Each member has a dedicated folder containing their analysis and supporting files:
 
-### Individual Work Documentation
+* `TeamMember1/`
+* `TeamMember2/`
+* `TeamMember3/`
+* `TeamMember4/`
+* `TeamMember5/`
+* `TeamMember6/`
+  
+### Contents of Each Folder
 
-Each team member has a dedicated README file:
+Each TeamMemberX folder contains:
 
-* `README_TeamMember1`
-* `README_TeamMember2`
-* `README_TeamMember3`
-* `README_TeamMember4`
-* `README_TeamMember5`
-* `README_TeamMember6`
+A README describing the workflow and analysis performed.
+Optionally:
+* Scripts (e.g., .py)
+* Data files (e.g., .xlsx)
+* Any additional files required for the analysis
 
-These files include:
+These folders document:
 
 * Step-by-step pipelines followed
 * Commands executed (primarily via terminal)
