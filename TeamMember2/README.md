@@ -25,7 +25,7 @@ PARP1_AlphaFold_pLDDT.png
 -	Figure 3 pymol.png
 -	Figure 4 pymol.png
 Structures: 
-For docking:      
+For docking:      https://www.swissdock.ch/results.php?job=36123353
 Parameters:
 - Target: 6NRH
 - Ligand: KYP
