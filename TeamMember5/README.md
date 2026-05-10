@@ -1,3 +1,6 @@
+Input file for analysis is available under "Downloadable data - Analysis & MDs (1,000 frames, only protein)" on: https://www.dsimb.inserm.fr/ATLAS/database/ATLAS/5ws1_A/5ws1_A.html
+
+
 # 0. Create project folder
 ```bash
 ssh s253719@pupil4.healthtech.dtu.dk
