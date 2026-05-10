@@ -98,9 +98,9 @@ show cartoon
 color cyan, ss h
 color magenta, ss s
 color green, ss l+''
-% Save: Figure 10
+# Save: Figure 10
 
-% Manual select RMSF peaks
+# Manual select RMSF peaks
 set_name sele, rmsf_peaks
 % Manual select mutational variant sites
 set_name sele, variants
@@ -118,5 +118,5 @@ label overlap and name CA, "%s%s" % (resn,resi)
 
 set all_states, off
 bg white
-% Save: Figure 11
+# Save: Figure 11
 ```
