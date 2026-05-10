@@ -1,5 +1,5 @@
 # 0. Create project folder
-```ruby
+```bash
 ssh s253719@pupil4.healthtech.dtu.dk
 cd /home/projects/22117_protein_structure/projects/group12/s253719
 mkdir src
@@ -12,8 +12,8 @@ mkdir pdbs
 cd pdbs
 ```
 
-# 1.	Convert trajectory file
-```ruby
+# 1.	Convert the trajectory files
+```bash
 mkdir 1_Convert_trajectory_files 
 cd 1_Convert_trajectory_files
 gmx trjconv -f ../../atlas_data/5ws1_A_analysis/5ws1_A_R1.xtc -s ../../atlas_data/5ws1_A_analysis/5ws1_A_R1.tpr -o 5ws1_A_R1.pdb  -fit rot+trans
@@ -23,7 +23,7 @@ cd ../
 ```
 
 # 2.	Compute the main-chain RMSD matrix
-```ruby
+```bash
 mkdir 2_Mainchain_RMSD_matrix
 cd 2_Mainchain_RMSD_matrix
 gmx_mpi rms -f ../../atlas_data/5ws1_A_analysis/5ws1_A_R1.xtc -s ../../atlas_data/5ws1_A_analysis/5ws1_A_R1.tpr  -o rmsd_R1.xvg -m rmsd_matrix_R1.xpm
@@ -33,7 +33,7 @@ cd ../
 ```
 
 # 3.	Clustering of the trajectories
-```ruby
+```bash
 mkdir 3_Clustering_trajectories
 cd 3_Clustering_trajectories
 gmx_mpi cluster -f ../../atlas_data/5ws1_A_analysis/5ws1_A_R1.xtc -s ../../atlas_data/5ws1_A_analysis/5ws1_A_R1.tpr -dm rmsd_matrix_R1.xpm -o rmsd_clust_R1.xpm -g cluster_R1.log -sz clust_size_R1.xvg -cl clusters_R1.pdb -clid clust_id_R1.xvg -dist rmsd_dist_R1.xvg -method gromos  -cutoff  0.18
@@ -43,7 +43,7 @@ cd ../
 ```
 
 # 4.	Evaluate the population of each cluster
-```ruby
+```bash
 mkdir 4_Evaluate_cluster_populations
 cd 4_Evaluate_cluster_populations
   base: C:\Users\heszt\Documents\MSc\DTU\Sem2\Protein\Project\Data
@@ -54,8 +54,8 @@ python plot.py -r R3 -n 8 --cluster_input_dir ../3_Clustering_trajectories --rms
 cd ../../
 ```
 
-# 5.	Self-scan
-```ruby
+# 5.	Prepare for self-scan (Deliver to Team Member 6)
+```bash
 mkdir mutatex
 cd mutatex
 mkdir self-scan
@@ -88,3 +88,35 @@ cp R3_model_1-3.pdb ../../../mutatex/self-scan/
 ```
 # 6. Visualisation in pyMOL
 
+Open: R2_model_1-3.pdb
+
+```python
+intra_fit R2_model_1-3
+set all_states, on
+dss
+show cartoon
+color cyan, ss h
+color magenta, ss s
+color green, ss l+''
+% Save: Figure 10
+
+% Manual select RMSF peaks
+set_name sele, rmsf_peaks
+% Manual select mutational variant sites
+set_name sele, variants
+select overlap, rmsf_peaks and variants
+color yellow, ss s
+
+set cartoon_transparency, 0.5, R2_model_1-3
+set cartoon_transparency, 0.1, rmsf_peaks
+color orange, rmsf_peaks
+set cartoon_transparency, 0.1, variants
+color magenta, variants
+set cartoon_transparency, 0.1, overlap
+color red, overlap
+label overlap and name CA, "%s%s" % (resn,resi)
+
+set all_states, off
+bg white
+% Save: Figure 11
+```
