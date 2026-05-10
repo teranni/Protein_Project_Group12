@@ -1,4 +1,5 @@
 # 0. Create project folder
+```ruby
 ssh s253719@pupil4.healthtech.dtu.dk
 cd /home/projects/22117_protein_structure/projects/group12/s253719
 mkdir src
@@ -9,32 +10,40 @@ mkdir atlas_data
 mv 5ws1_A_analysis/ atlas_data/
 mkdir pdbs
 cd pdbs
+```
 
 # 1.	Convert trajectory file
+```ruby
 mkdir 1_Convert_trajectory_files 
 cd 1_Convert_trajectory_files
 gmx trjconv -f ../../atlas_data/5ws1_A_analysis/5ws1_A_R1.xtc -s ../../atlas_data/5ws1_A_analysis/5ws1_A_R1.tpr -o 5ws1_A_R1.pdb  -fit rot+trans
 gmx trjconv -f ../../atlas_data/5ws1_A_analysis/5ws1_A_R2.xtc -s ../../atlas_data/5ws1_A_analysis/5ws1_A_R2.tpr -o 5ws1_A_R2.pdb  -fit rot+trans
 gmx trjconv -f ../../atlas_data/5ws1_A_analysis/5ws1_A_R3.xtc -s ../../atlas_data/5ws1_A_analysis/5ws1_A_R3.tpr -o 5ws1_A_R3.pdb  -fit rot+trans
 cd ../
+```
 
 # 2.	Compute the main-chain RMSD matrix
+```ruby
 mkdir 2_Mainchain_RMSD_matrix
 cd 2_Mainchain_RMSD_matrix
 gmx_mpi rms -f ../../atlas_data/5ws1_A_analysis/5ws1_A_R1.xtc -s ../../atlas_data/5ws1_A_analysis/5ws1_A_R1.tpr  -o rmsd_R1.xvg -m rmsd_matrix_R1.xpm
 gmx_mpi rms -f ../../atlas_data/5ws1_A_analysis/5ws1_A_R2.xtc -s ../../atlas_data/5ws1_A_analysis/5ws1_A_R2.tpr  -o rmsd_R2.xvg -m rmsd_matrix_R2.xpm
 gmx_mpi rms -f ../../atlas_data/5ws1_A_analysis/5ws1_A_R3.xtc -s ../../atlas_data/5ws1_A_analysis/5ws1_A_R3.tpr  -o rmsd_R3.xvg -m rmsd_matrix_R3.xpm
 cd ../
+```
 
 # 3.	Clustering of the trajectories
+```ruby
 mkdir 3_Clustering_trajectories
 cd 3_Clustering_trajectories
 gmx_mpi cluster -f ../../atlas_data/5ws1_A_analysis/5ws1_A_R1.xtc -s ../../atlas_data/5ws1_A_analysis/5ws1_A_R1.tpr -dm rmsd_matrix_R1.xpm -o rmsd_clust_R1.xpm -g cluster_R1.log -sz clust_size_R1.xvg -cl clusters_R1.pdb -clid clust_id_R1.xvg -dist rmsd_dist_R1.xvg -method gromos  -cutoff  0.18
 gmx_mpi cluster -f ../../atlas_data/5ws1_A_analysis/5ws1_A_R2.xtc -s ../../atlas_data/5ws1_A_analysis/5ws1_A_R2.tpr -dm rmsd_matrix_R2.xpm -o rmsd_clust_R2.xpm -g cluster_R2.log -sz clust_size_R2.xvg -cl clusters_R2.pdb -clid clust_id_R2.xvg -dist rmsd_dist_R2.xvg -method gromos  -cutoff  0.17
 gmx_mpi cluster -f ../../atlas_data/5ws1_A_analysis/5ws1_A_R3.xtc -s ../../atlas_data/5ws1_A_analysis/5ws1_A_R3.tpr -dm rmsd_matrix_R3.xpm -o rmsd_clust_R3.xpm -g cluster_R3.log -sz clust_size_R3.xvg -cl clusters_R3.pdb -clid clust_id_R3.xvg -dist rmsd_dist_R3.xvg -method gromos  -cutoff  0.16
 cd ../
+```
 
 # 4.	Evaluate the population of each cluster
+```ruby
 mkdir 4_Evaluate_cluster_populations
 cd 4_Evaluate_cluster_populations
   base: C:\Users\heszt\Documents\MSc\DTU\Sem2\Protein\Project\Data
@@ -43,8 +52,10 @@ python plot.py -r R1 -n 5 --cluster_input_dir ../3_Clustering_trajectories --rms
 python plot.py -r R2 -n 7 --cluster_input_dir ../3_Clustering_trajectories --rmsd_input_dir ../2_Mainchain_RMSD_matrix
 python plot.py -r R3 -n 8 --cluster_input_dir ../3_Clustering_trajectories --rmsd_input_dir ../2_Mainchain_RMSD_matrix
 cd ../../
+```
 
 # 5.	Self-scan
+```ruby
 mkdir mutatex
 cd mutatex
 mkdir self-scan
@@ -74,3 +85,6 @@ cd cluster_R3
 csplit -f model_ -b "%02d.pdb" ../clusters_R3.pdb '/^MODEL/' '{*}' 
 cat model_01.pdb model_02.pdb model_03.pdb > R3_model_1-3.pdb
 cp R3_model_1-3.pdb ../../../mutatex/self-scan/
+```
+# 6. Visualisation in pyMOL
+
