@@ -91,8 +91,8 @@ cp R3_model_1-3.pdb ../../../mutatex/self-scan/
 ```
 # 6. Visualisation in pyMOL
 
-Input file: R2_model_1-3.pdb
-Result: 'Residue_selection.pse'
+Input file: R2_model_1-3.pdb\
+Result: Residue_selection.pse
 
 ```python
 intra_fit R2_model_1-3
