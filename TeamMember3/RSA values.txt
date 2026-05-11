@@ -1,0 +1,10 @@
+RSA values for the residues of interest 
+AA709 = 0.0
+LA713 = 0.2
+PA750 = 61.8
+AA828 = 67.0
+TA867 = 8.4
+RA878 = 34.3
+IA879 = 22.3
+PA881 = 20.9
+SA904 = 5.6
